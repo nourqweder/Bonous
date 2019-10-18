@@ -1,14 +1,20 @@
 Package: Bonous
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
-    person(given = "First",
-           family = "Last",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: What license it uses
-Encoding: UTF-8
-LazyData: true
+Type: Package
+Title: BOnous
+Version: 1.0
+Date: 2019-09-19
+Author: nnnn
+Maintainer: Who to complain to <nouqw898@student.liu.se>
+Description: in this R lab we are trying to implement A linear regression as a package.
+License: GPL-3
 RoxygenNote: 6.1.99.9000
+Depends: R (>= 3.3.0)
+LazyData: true
+Encoding: UTF-8
+Suggests: testthat,
+    knitr,
+    rmarkdown,
+    testthat,
+    covr
+Imports: ggplot2
+VignetteBuilder: knitr
