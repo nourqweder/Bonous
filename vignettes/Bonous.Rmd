@@ -58,7 +58,7 @@ All fields and methods are stored in reference class of R. Therefore, the data s
 
 ## Print
 
-`print()` function shows the data given for the linear regression, and coefficients of the  constructed linear regression model. Since this method is stored in 'linreg' reference class, before using this method, name of the data set, which is stored in the same class as this method is, must be specified, `datasetname$print()` will use the data set stored in the reference class, and show the result of constructed linear regression model.
+`print()` function shows the data given for the linear regression, and coefficients of the  constructed linear regression model. Since this method is stored in 'linreg' reference class, before using this method, name of the data set, which is stored in the same class as this method is, must be specified, `datasetname$print()` will use the data set stored in the reference class, and show the result of constructed 
 
 Folloing is an example:
 
@@ -81,13 +81,11 @@ To calculate the coefficients as a named vector.
 
 $$\hat{\beta} = (X^TX + lambda )^{-1}X^Ty$$
 
-```{r, fig.show='hold'}
-#linreg_mod$coef()
-```
 
 
 ## References 
 [Advanced R](http://adv-r.had.co.nz/R5.html)
 
 [Advanced R](http://adv-r.had.co.nz/R5.html)
-[Advanced R](http://r-statistics.co/Linear-Regression.html)
+
+[Linear-Regression](http://r-statistics.co/Linear-Regression.html)
