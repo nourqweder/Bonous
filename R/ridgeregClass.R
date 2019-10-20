@@ -1,15 +1,19 @@
-#' 1.1 Ridge regression class
+#' Ridge regression class
+#'
+#'
+#'
 #' ridgereg(formula, data, lambda).
 #' Ridge regression can be a good alternative when we have a lot of covariates (when p > n) or in the
 #' situation of multicollinearity. More information on ridge regression can be found in chapter 3.4.1 in [1].
+#' @field lambda argument lambda a constant for ridge
 #' @field myFormula formula, is a object of class formula.
 #' @field myData character, The data is typically a data.frame. The gieven data set.
-#' @field lambda argument lambda a constant for ridge
+#'
 #' @return Nothing.
 #' @export ridgereg
 #' @exportClass ridgereg
-ridgereg<- setRefClass("ridgereg",
-                       fields = list(
+ridgereg <- setRefClass("ridgereg",
+                      fields = list(
                          #x = "ANY", #Independent Values (is considered to be an explaantory variable)
                          #y = "ANY", #Depenent Values (whose value we want to explain or forecast)
                          #betaHat ="matrix", #
@@ -22,8 +26,8 @@ ridgereg<- setRefClass("ridgereg",
                          #regressionsVar = "matrix",
                          #tValue = "matrix",
                          #pValues = "numeric",
-                         formula = "formula",
-                         data = "character",
+                         myFormula = "formula",
+                         myData = "character",
                          lambda= "numeric"
                         ),
                          methods= list(

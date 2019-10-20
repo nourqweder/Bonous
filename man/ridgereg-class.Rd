@@ -4,15 +4,14 @@
 \name{ridgereg-class}
 \alias{ridgereg-class}
 \alias{ridgereg}
-\title{1.1 Ridge regression class
-ridgereg(formula, data, lambda).
-Ridge regression can be a good alternative when we have a lot of covariates (when p > n) or in the
-situation of multicollinearity. More information on ridge regression can be found in chapter 3.4.1 in [1].}
+\title{Ridge regression class}
 \value{
 Nothing.
 }
 \description{
-1.1 Ridge regression class
+Ridge regression class
+}
+\details{
 ridgereg(formula, data, lambda).
 Ridge regression can be a good alternative when we have a lot of covariates (when p > n) or in the
 situation of multicollinearity. More information on ridge regression can be found in chapter 3.4.1 in [1].
@@ -20,11 +19,11 @@ situation of multicollinearity. More information on ridge regression can be foun
 \section{Fields}{
 
 \describe{
+\item{\code{lambda}}{argument lambda a constant for ridge}
+
 \item{\code{myFormula}}{formula, is a object of class formula.}
 
 \item{\code{myData}}{character, The data is typically a data.frame. The gieven data set.}
-
-\item{\code{lambda}}{argument lambda a constant for ridge}
 }}
 
 

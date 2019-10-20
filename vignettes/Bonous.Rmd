@@ -1,0 +1,93 @@
+---
+title: "A Ridge regression in R"
+author: "Nour Qweder, Jooyoung Lee, Samia Butt"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+
+vignette: >
+  %\VignetteIndexEntry{Simulate A Ridge regression package in R}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+
+---
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  echo = TRUE
+)
+```
+
+```{r, include = FALSE}
+library(ggplot2)
+library(Bonous)
+```
+
+
+## How to use
+```{r installation, eval = FALSE}
+devtools::install_github("nourqweder/Bonous", build_vignettes = TRUE)
+```
+
+## Installation 
+
+ Before start using this package, `ggplot2` package must be installed, in order to plot the result of modelling. This packages is created to make linear regression model with given data. By putting formula and data in the function, the printed result will show the linear relationship between independent variables and dependent variable, which is calculated by using least square method.
+ 
+ 
+
+## Usage Methods
+
+```{r echo=TRUE, fig.show='hold'}
+
+```
+
+
+## Data
+
+All fields and methods are stored in reference class of R. Therefore, the data set which is to be examined must be created and stored in the reference class. New data set is assigned to a variable by using function 'classname$new(function, data)'. In the function, dependent variable must be given at first, and after putting ' ~ ', independent variable(s) should be given.
+
+
+## Print
+
+`print()` function shows the data given for the linear regression, and coefficients of the  constructed linear regression model. Since this method is stored in 'linreg' reference class, before using this method, name of the data set, which is stored in the same class as this method is, must be specified, `datasetname$print()` will use the data set stored in the reference class, and show the result of constructed linear regression model.
+
+Folloing is an example:
+
+## Plot
+
+`plot()` function presents the result of regression graphically. Theme of all graphs is 'LiU Theme'. As above mentioned, 'ggplot2' packages is required to be installed prior to use this package. `datasetname$plot()` will visually show the analyzed result, with the data set which is stored in the reference class of specific name. 
+ Two graphs will be constructed by using this method. The first graph will show the relationship between fitted values and residuals - fitted values being the independent variables and residuals being the dependent variables. The expected value of residuals at each point will be connected with a red line. The second graph will present the relationship between fitted values and standardized residuals - fitted values being the independent variables and standardized residuals being the dependent variables. The expected value of standardized residuals at each point will be connected with a white line.
+
+Following is an example:
+
+
+## pred and coef
+
+ `resid()`, `pred()`, and `coef()` function will present residuals, best fitted values, and coefficients of the linear model respectively. Each function will print a vector of the corresponding numeric values. These functions, as well, requires to specify the name of the data set, that is stored in the same class as the function is, as `datasetname$functionname()` because they are also the methods defined in the reference class.
+ 
+ Followings are examples:
+###coef() 
+
+To calculate the coefficients as a named vector.
+
+$$\hat{\beta} = (X^TX + lambda )^{-1}X^Ty$$
+
+```{r, fig.show='hold'}
+#linreg_mod$coef()
+```
+
+
+## References 
+[Advanced R](http://adv-r.had.co.nz/R5.html)
+
+[Advanced R](http://adv-r.had.co.nz/R5.html)
+[Advanced R](http://r-statistics.co/Linear-Regression.html)
