@@ -30,18 +30,18 @@ ridgereg<- setRefClass("ridgereg",
 
                          #--------------------------------------------------------------------------------------
                          #ridgereg(formula, data, lambda)
-                         initialize= function(formula, data, lambda)#,normalise = TRUE) error in initilize function
-                         {
+                        # initialize= function(formula, data, lambda)#,normalise = TRUE) error in initilize function
+                         #{
                            #1- check validation
-                           ifelse(!is.data.frame(data),stop("the input data is not valid"),
-                                  ifelse(!class(formula) != "formula"), stop("formula is not valid"),
-                                  ifelse(!all(sapply(data[,conames(data)%in% all.vars(formula)],is.numeric)), stop("not numeric data"),
-                                         ifelse(!length(lambda)==1, stop("lambda not valid")," ")))
+                          # ifelse(!is.data.frame(data),stop("the input data is not valid"),
+                           #       ifelse(!class(formula) != "formula"), stop("formula is not valid"),
+                            #      ifelse(!all(sapply(data[,conames(data)%in% all.vars(formula)],is.numeric)), stop("not numeric data"),
+                            #             ifelse(!length(lambda)==1, stop("lambda not valid")," ")))
 
-                           myData <<-data
-                           myFormula <<-formula
-                           lambda <<-lambda
-                         },
+                           #myData <<-data
+                           #myFormula <<-formula
+                           #lambda <<-lambda
+                         #},
                          #--------------------------------------------------------------------------------------
                          #2- calculate values
                          #The goal here is to establish a mathematical equation for a ridge regression model
