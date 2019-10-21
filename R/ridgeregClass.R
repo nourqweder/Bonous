@@ -9,9 +9,17 @@
 #' @field myFormula formula, is a object of class formula.
 #' @field myData character, The data is typically a data.frame. The gieven data set.
 #'
-#' @return Nothing.
+#' @references Reference Classes: \url{http://adv-r.had.co.nz/R5.html}
+#'
+#' QR decomposition: \url{https://en.wikipedia.org/wiki/QR_decomposition}
+#'
+#' Vignettes: \url{http://r-pkgs.had.co.nz/vignettes.html}
+#'
+#' @importFrom methods new
+#'
 #' @export ridgereg
 #' @exportClass ridgereg
+#'
 ridgereg <- setRefClass("ridgereg",
                       fields = list(
                          #x = "ANY", #Independent Values (is considered to be an explaantory variable)
@@ -26,8 +34,8 @@ ridgereg <- setRefClass("ridgereg",
                          #regressionsVar = "matrix",
                          #tValue = "matrix",
                          #pValues = "numeric",
-                         myFormula = "formula",
-                         myData = "character",
+                        formula = "formula",
+                        data = "character",
                          lambda= "numeric"
                         ),
                          methods= list(

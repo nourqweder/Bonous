@@ -3,4 +3,5 @@
 export(ridgereg)
 export(visualize_airport_delays)
 exportClasses(ridgereg)
+importFrom(methods,new)
 importFrom(stats,na.omit)
