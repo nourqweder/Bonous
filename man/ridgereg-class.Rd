@@ -5,9 +5,6 @@
 \alias{ridgereg-class}
 \alias{ridgereg}
 \title{Ridge regression class}
-\value{
-Nothing.
-}
 \description{
 ridgereg(formula, data, lambda).
 Ridge regression can be a good alternative when we have a lot of covariates (when p > n) or in the
@@ -24,3 +21,10 @@ situation of multicollinearity. More information on ridge regression can be foun
 }}
 
 
+\references{
+Reference Classes: \url{http://adv-r.had.co.nz/R5.html}
+
+QR decomposition: \url{https://en.wikipedia.org/wiki/QR_decomposition}
+
+Vignettes: \url{http://r-pkgs.had.co.nz/vignettes.html}
+}
