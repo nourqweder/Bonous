@@ -38,3 +38,5 @@ rsconnect/
 .Rproj.user
 doc
 Meta
+packrat/lib*/
+packrat/src/

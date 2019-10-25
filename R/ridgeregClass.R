@@ -6,8 +6,8 @@
 #' Ridge regression can be a good alternative when we have a lot of covariates (when p > n) or in the
 #' situation of multicollinearity. More information on ridge regression can be found in chapter 3.4.1 in [1].
 #' @field lambda argument lambda a constant for ridge. "a hyperparameter"
-#' @field myFormula formula, is a object of class formula. format y ~ x_1 + x_2 + ... + x_n.
-#' @field myData character, The data is typically a data.frame. The gieven data set.
+#' @field formula formula, is a object of class formula. format y ~ x_1 + x_2 + ... + x_n.
+#' @field data data.frame, The data is typically a data.frame. The gieven data set.
 #' @references Reference Classes: \url{http://adv-r.had.co.nz/R5.html}
 #' @description Returns the result of the Ridge Regression
 #' @examples
@@ -79,19 +79,20 @@ ridgereg <- setRefClass("ridgereg",
                            structure( c(info), names = row.names(info))
                          }))
                          #--------------------------------------------------------------------------------------
-ridgereg$methods(predict = function()
+                          ridgereg$methods(predict = function()
                          {
                           "return the predicted values ^y, it should be able to predict for new dataset similar"
 
                          })
                          #--------------------------------------------------------------------------------------
-ridgereg$methods(coef = function()
+                        ridgereg$methods(coef = function()
                         {#^ ridge =( XTX + I)1
 
                          "return the ridge regression coefficients ^ ridge"
+                          info <- calculateValues()[[1]]
+                          structure( c(info), names = row.names(info))
 
                         })
-
 
 
 
@@ -116,4 +117,5 @@ traceback()
 #lm.ridge(formula, data,lambda = lambda)
 #lm.ridge(formula, data)
 data(flights)
-#o <- ridgereg$new(formula, data)
+o <- ridgereg$new(formula, data,lambda)
+o$coef()
