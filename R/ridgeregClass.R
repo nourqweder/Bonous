@@ -45,10 +45,10 @@ ridgereg <- setRefClass("ridgereg",
                            result <- list()
 
                            # Define matrix
-                           X <- model.matrix(formula, data)# x is the independent variables
+                           x <- model.matrix(formula, data)# x is the independent variables
 
                            # 1. Normlization
-                           X[,2:ncol(X)] <- scale( X[,-1])
+                           x[,2:ncol(x)] <- scale( x[,-1])
 
                            # 2. Calculations using least squares.
                            dependentVar <- all.vars(expr = formula)[1]
@@ -79,15 +79,13 @@ ridgereg <- setRefClass("ridgereg",
                            structure(c(info), names = row.names(info))
                          },
                          #--------------------------------------------------------------------------------------
-                        predict = function()
+                        predict = function(newdata = NULL)
                          {
                           "return the predicted values ^y, it should be able to predict for new dataset similar"
                             if(is.null(newdata)){
                               result <- structure(c(calculateValues()[[2]]), names=(1:length(calculateValues()[[2]])))
-                            } else{
-                              stopifnot(is.data.frame(newdata))
-                              if(!all(all.vars(formula)%in%colnames(newdata))) stop("newdata doesn't match formula")
-                              if(!all(sapply(newdata[,colnames(newdata) %in% all.vars(formula)],is.numeric))) stop("newdata not numeric")
+                            } else{ # if the new data doesn't match formula
+                              stopifnot(is.data.frame(newdata) , !all(all.vars(formula)%in%colnames(newdata)),!all(sapply(newdata[,colnames(newdata) %in% all.vars(formula)],is.numeric)))
 
                               X<-model.matrix(object=formula, data=newdata)
                               X[,2:ncol(X)] <- scale(X[,-1])
