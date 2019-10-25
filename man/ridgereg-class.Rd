@@ -4,27 +4,44 @@
 \name{ridgereg-class}
 \alias{ridgereg-class}
 \alias{ridgereg}
-\title{Ridge regression class}
-\description{
+\title{Ridge regression
+
+
 ridgereg(formula, data, lambda).
 Ridge regression can be a good alternative when we have a lot of covariates (when p > n) or in the
-situation of multicollinearity. More information on ridge regression can be found in chapter 3.4.1 in [1].
+situation of multicollinearity. More information on ridge regression can be found in chapter 3.4.1 in [1].}
+\description{
+Returns the result of the Ridge Regression
+}
+\details{
+Ridge regression class
 }
 \section{Fields}{
 
 \describe{
-\item{\code{lambda}}{argument lambda a constant for ridge}
+\item{\code{lambda}}{argument lambda a constant for ridge. "a hyperparameter"}
 
-\item{\code{myFormula}}{formula, is a object of class formula.}
+\item{\code{formula}}{formula, is a object of class formula. format y ~ x_1 + x_2 + ... + x_n.}
 
-\item{\code{myData}}{character, The data is typically a data.frame. The gieven data set.}
+\item{\code{data}}{data.frame, The data is typically a data.frame. The gieven data set.}
 }}
 
+\section{Methods}{
 
+\describe{
+\item{\code{coef()}}{return the ridge regression coefficients ^ ridge}
+
+\item{\code{predict()}}{return the predicted values ^y, it should be able to predict for new dataset similar}
+
+\item{\code{print()}}{print out the coefficients and coefficient names, similar as done by the lm class.}
+}}
+
+\examples{
+data(iris)
+ridgereg$new(Petal.Length~Sepal.Width+Sepal.Length, data=iris, lambda = 0)$print()
+ridgereg$new(Petal.Length~Sepal.Width+Sepal.Length, data=iris, lambda = 0)$predict()
+ridgereg$new(Petal.Length~Sepal.Width+Sepal.Length, data=iris, lambda = 0)$coef()
+}
 \references{
 Reference Classes: \url{http://adv-r.had.co.nz/R5.html}
-
-QR decomposition: \url{https://en.wikipedia.org/wiki/QR_decomposition}
-
-Vignettes: \url{http://r-pkgs.had.co.nz/vignettes.html}
 }
