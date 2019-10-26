@@ -30,7 +30,3 @@ visualization_airports_delay <- function(){
           plot.subtitle = element_text(hjust = 0.5, size=14, face="italic"),
           axis.text = element_text(size=14))
 }
-
-
-#qplot(hwy, data = mpg, fill = drv)
-#`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.

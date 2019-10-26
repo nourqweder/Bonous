@@ -28,8 +28,10 @@ knitr::opts_chunk$set(
 ```
 
 ```{r, include = FALSE}
-library(ggplot2)
 library(Bonous)
+library(ggplot2)
+library(caret)
+library(mlbench)
 ```
 
 

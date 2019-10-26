@@ -29,7 +29,7 @@ Ridge regression class
 \section{Methods}{
 
 \describe{
-\item{\code{coef()}}{return the ridge regression coefficients ^ ridge}
+\item{\code{coef()}}{return the ridge regression coefficients ^y ridge}
 
 \item{\code{predict(newdata = NULL)}}{return the predicted values ^y, it should be able to predict for new dataset similar}
 

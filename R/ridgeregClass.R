@@ -31,6 +31,7 @@ ridgereg <- setRefClass("ridgereg",
                          initialize = function(formula, data,lambda ){
                            # 1- Check validation & initialize
                            stopifnot(is.data.frame(data), length(lambda) == 1, class(formula) == "formula")
+
                            data <<-data
                            formula <<-formula
                            lambda <<-lambda
@@ -44,39 +45,35 @@ ridgereg <- setRefClass("ridgereg",
                           {
                            result <- list()
 
+                           # 1. Calculations using least squares.
+
+                           y<-data[,colnames(data)==all.vars(formula)[1]]# y is the dependent variable/s in this formula
+
                            # Define matrix
-                           x <- model.matrix(formula, data)# x is the independent variables
+                           X <- model.matrix(object=formula, data=data)# x is the independent variables
 
-                           # 1. Normlization
-                           x[,2:ncol(x)] <- scale( x[,-1])
-
-                           # 2. Calculations using least squares.
-                           dependentVar <- all.vars(expr = formula)[1]
-                           y <- data[, dependentVar] # y is the dependent variable/s in this formula
-                           I <- diag(ncol(x))
-
-
+                           # 2. Normlization
+                           X<-model.matrix(object=formula, data=data)
+                           X[,2:ncol(X)] <- scale(X[,-1]) #Normalizing
                            ##3.  Compute Estimations
                            # Regression coefficients:
                            #betaHat <<- coef(lm(y ~ x))
 
-                           result$coef  <- as.vector(solve( t(x) %*% x + lambda * I) %*% t(x) %*% y)
-
+                           result$coef <- solve(t(X) %*% X + diag(lambda, nrow = ncol(X))) %*% (t(X) %*% y)
                            # yHat = X*bHat  === yhat = beta0 + beta1*x
                            # The fitted values:
                            #betaZero <- mean(y)
-                           result$fittedValues <- x %*% result$coef
+                           result$fitted <- X %*% result$coef
                            return(result)
                          },
                          #--------------------------------------------------------------------------------------
                           print=function()
                          {
                           "print out the coefficients and coefficient names, similar as done by the lm class."
-                           cat(paste("call: \n"))
-                           cat(paste("ridgereg(formula = ", deparse(formula), ", data = ", deparse(substitute(data))," lambda = ", lambda, ")\n\n", sep = ""))
-                           cat(paste("Coefficients:\n"))
-                           info <- calculateValues()[[1]]
-                           structure(c(info), names = row.names(info))
+                            myData <- as.character(deparse(substitute(data)))
+                           cat("ridgereg(formula = ", deparse(formula), ", data = ", myData, ", lambda = ", lambda, ")", "\n", "\n", sep="")
+                           cat("Coefficients:", "\n")
+                           structure(c(calculateValues()[[1]]), names=rownames(calculateValues()[[1]]))
                          },
                          #--------------------------------------------------------------------------------------
                         predict = function(newdata = NULL)
@@ -84,10 +81,16 @@ ridgereg <- setRefClass("ridgereg",
                           "return the predicted values ^y, it should be able to predict for new dataset similar"
                             if(is.null(newdata)){
                               result <- structure(c(calculateValues()[[2]]), names=(1:length(calculateValues()[[2]])))
-                            } else{ # if the new data doesn't match formula
-                              stopifnot(is.data.frame(newdata) , !all(all.vars(formula)%in%colnames(newdata)),!all(sapply(newdata[,colnames(newdata) %in% all.vars(formula)],is.numeric)))
+                            } else
+                              { # if the new data doesn't match formula
+                            # stopifnot(is.data.frame(newdata) , !all(all.vars(formula)%in%colnames(newdata)),
+                             #           !all(sapply(newdata[,colnames(newdata) %in% all.vars(formula)],is.numeric)))
+                                if(!is.data.frame(newdata)) stop("the input data is in wrong form is not a data frame")
+                                if(!all(all.vars(formula)%in%colnames(newdata))) stop("newdata mis match the style of formula")
+                                if(!all(sapply(newdata[,colnames(newdata) %in% all.vars(formula)],is.numeric))) stop("numeric mis match")
 
-                              X<-model.matrix(object=formula, data=newdata)
+
+                              X<-model.matrix(object=formula, data =newdata)
                               X[,2:ncol(X)] <- scale(X[,-1])
                               result <- (X %*% calculateValues()[[1]])[,1]
                             }
@@ -97,40 +100,28 @@ ridgereg <- setRefClass("ridgereg",
                         coef = function()
                         {#^ ridge =( XTX + I)1
 
-                         "return the ridge regression coefficients ^ ridge"
-                          info <- calculateValues()[[1]]
-                          structure( c(info), names = row.names(info))
+                         "return the ridge regression coefficients ^y ridge"
 
+                          structure(c(calculateValues()[[1]]), names=rownames(calculateValues()[[1]]))
                         })
                         )
 
 
 
 
-
-lambda <- 1
-
-data <- iris[,1:4]
-formula <- Sepal.Length ~ Sepal.Width + Petal.Length
-#class(formula)
-#x<-model.matrix(formula, data)
-#head(x)
+#How to use it
+#lambda <- 1
+#data <- iris[,1:4]
 #formula <- Sepal.Length ~ Sepal.Width + Petal.Length
-o <- ridgereg$new(formula, data,lambda)
-o$print()
-head(o$calculateValues()[[2]])
+#class(formula)
+#ridgeregObj <- ridgereg$new(formula, data,lambda)
+#ridgeregObj$print()
+#head(ridgeregObj$calculateValues()[[2]])
+#ridgeregObj$predict()
+#newdata <- iris[35:40,1:4]
+#ridgeregObj$predict(newdata=newdata)
 
-#X<-model.matrix(formula, data)
-#x[,2:ncol(x)] <- scale(x[,-1]) #Normalizing
-#head(X)
+#ridgereg$new(Petal.Length~Sepal.Width+Sepal.Length, data=iris, lambda = 0)$coef()
 
 #calculateValues()
 #traceback()
-
-#lm.ridge(formula, data,lambda = lambda)
-#lm.ridge(formula, data)
-#data(flights)
-#o <- ridgereg$new(formula, data,lambda)
-#o$coef()
-#o$predict()
-#ridgereg$new(Petal.Length~Sepal.Width+Sepal.Length, data=iris, lambda = 0)$coef()
