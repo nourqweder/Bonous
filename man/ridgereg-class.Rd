@@ -31,7 +31,7 @@ Ridge regression class
 \describe{
 \item{\code{coef()}}{return the ridge regression coefficients ^ ridge}
 
-\item{\code{predict()}}{return the predicted values ^y, it should be able to predict for new dataset similar}
+\item{\code{predict(newdata = NULL)}}{return the predicted values ^y, it should be able to predict for new dataset similar}
 
 \item{\code{print()}}{print out the coefficients and coefficient names, similar as done by the lm class.}
 }}

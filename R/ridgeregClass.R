@@ -19,7 +19,7 @@
 #' @export
 #'
 ridgereg <- setRefClass("ridgereg",
-                          fields = list(
+                        fields = list(
                         formula = "formula",
                         data = "data.frame",
                         lambda= "numeric"
@@ -101,22 +101,25 @@ ridgereg <- setRefClass("ridgereg",
                           info <- calculateValues()[[1]]
                           structure( c(info), names = row.names(info))
 
-                        }))
+                        })
+                        )
 
 
 
 
 
-#lambda <- 1
+lambda <- 1
 
-#data <- iris[,1:4]
-#formula <- Sepal.Length ~ Sepal.Width + Petal.Length
+data <- iris[,1:4]
+formula <- Sepal.Length ~ Sepal.Width + Petal.Length
 #class(formula)
 #x<-model.matrix(formula, data)
 #head(x)
 #formula <- Sepal.Length ~ Sepal.Width + Petal.Length
-#o <- ridgereg$new(formula, data,lambda)
-#o$print()
+o <- ridgereg$new(formula, data,lambda)
+o$print()
+head(o$calculateValues()[[2]])
+
 #X<-model.matrix(formula, data)
 #x[,2:ncol(x)] <- scale(x[,-1]) #Normalizing
 #head(X)

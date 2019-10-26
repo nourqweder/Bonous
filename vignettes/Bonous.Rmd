@@ -1,6 +1,6 @@
 ---
 title: "A Ridge regression in R"
-author: "Nour Qweder, Jooyoung Lee, Samia Butt"
+author: "Nour Qweder"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -38,15 +38,16 @@ library(Bonous)
 devtools::install_github("nourqweder/Bonous", build_vignettes = TRUE)
 ```
 
-## Installation 
+## Introduction 
+In machine learning, Automatically detect patterns in data.
 
- Before start using this package, `ggplot2` package must be installed, in order to plot the result of modelling. This packages is created to make linear regression model with given data. By putting formula and data in the function, the printed result will show the linear relationship between independent variables and dependent variable, which is calculated by using least square method.
- 
  
 
 ## Usage Methods
 
 ```{r echo=TRUE, fig.show='hold'}
+
+ridgereg_obj <- ridgereg$new(Sepal.Length ~ Sepal.Width + Petal.Length, iris[,1:4],lambda = 1)
 
 ```
 
@@ -62,30 +63,30 @@ All fields and methods are stored in reference class of R. Therefore, the data s
 
 Folloing is an example:
 
-## Plot
 
-`plot()` function presents the result of regression graphically. Theme of all graphs is 'LiU Theme'. As above mentioned, 'ggplot2' packages is required to be installed prior to use this package. `datasetname$plot()` will visually show the analyzed result, with the data set which is stored in the reference class of specific name. 
- Two graphs will be constructed by using this method. The first graph will show the relationship between fitted values and residuals - fitted values being the independent variables and residuals being the dependent variables. The expected value of residuals at each point will be connected with a red line. The second graph will present the relationship between fitted values and standardized residuals - fitted values being the independent variables and standardized residuals being the dependent variables. The expected value of standardized residuals at each point will be connected with a white line.
+```{r echo=TRUE, fig.show='hold'}
+  ridgereg_obj$print()
+```
 
-Following is an example:
 
 
 ## pred and coef
 
- `resid()`, `pred()`, and `coef()` function will present residuals, best fitted values, and coefficients of the linear model respectively. Each function will print a vector of the corresponding numeric values. These functions, as well, requires to specify the name of the data set, that is stored in the same class as the function is, as `datasetname$functionname()` because they are also the methods defined in the reference class.
+ `pred()`, and `coef()` function will present residuals, best fitted values, and coefficients of the linear model respectively. Each function will print a vector of the corresponding numeric values. These functions, as well, requires to specify the name of the data set, that is stored in the same class as the function is, as `datasetname$functionname()` because they are also the methods defined in the reference class.
  
  Followings are examples:
-###coef() 
+### coef() 
 
 To calculate the coefficients as a named vector.
+  
 
 $$\hat{\beta} = (X^TX + lambda )^{-1}X^Ty$$
 
-
+```{r echo=TRUE, fig.show='hold'}
+  ridgereg_obj$coef()
+```
 
 ## References 
 [Advanced R](http://adv-r.had.co.nz/R5.html)
 
-[Advanced R](http://adv-r.had.co.nz/R5.html)
-
-[Linear-Regression](http://r-statistics.co/Linear-Regression.html)
+[Regularized least squares](https://en.wikipedia.org/wiki/Regularized_least_squares)

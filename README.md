@@ -42,7 +42,9 @@ Folloing is an example:
  `pred()`, and `coef()` function will present residuals, best fitted values, and coefficients of the linear model respectively. Each function will print a vector of the corresponding numeric values. These functions, as well, requires to specify the name of the data set, that is stored in the same class as the function is, as `datasetname$functionname()` because they are also the methods defined in the reference class.
  
  Followings are examples:
-###coef() 
+
+
+### coef() 
 
 To calculate the coefficients as a named vector.
 
