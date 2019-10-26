@@ -1,6 +1,6 @@
 ---
 title: "A Ridge regression in R"
-author: "Nour Qweder, Jooyoung Lee, Samia Butt"
+author: "Nour Qweder"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -38,15 +38,16 @@ library(Bonous)
 devtools::install_github("nourqweder/Bonous", build_vignettes = TRUE)
 ```
 
-## Installation 
+## Introduction 
+In machine learning, Automatically detect patterns in data.
 
- Before start using this package, `ggplot2` package must be installed, in order to plot the result of modelling. This packages is created to make linear regression model with given data. By putting formula and data in the function, the printed result will show the linear relationship between independent variables and dependent variable, which is calculated by using least square method.
- 
  
 
 ## Usage Methods
 
 ```{r echo=TRUE, fig.show='hold'}
+
+ridgereg_obj <- ridgereg$new(Sepal.Length ~ Sepal.Width + Petal.Length, data = iris[,1:4],lambda = 1)
 
 ```
 
@@ -86,6 +87,4 @@ $$\hat{\beta} = (X^TX + lambda )^{-1}X^Ty$$
 ## References 
 [Advanced R](http://adv-r.had.co.nz/R5.html)
 
-[Advanced R](http://adv-r.had.co.nz/R5.html)
-
-[Linear-Regression](http://r-statistics.co/Linear-Regression.html)
+[Regularized least squares](https://en.wikipedia.org/wiki/Regularized_least_squares)
