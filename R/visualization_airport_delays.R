@@ -1,3 +1,9 @@
+#' @title visualization airports delay
+#' @description to visualize the mean of the airport arrival time delays.by their x,y coordinator
+#' @return A scatterplot according to the arrival delay
+#' @importFrom stats na.omit
+#' @export visualization_airports_delay
+
 library(dplyr)
 library(nycflights13)
 library(ggplot2)

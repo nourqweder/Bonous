@@ -30,8 +30,8 @@ knitr::opts_chunk$set(
 ```{r, include = FALSE}
 library(Bonous)
 library(ggplot2)
-library(caret)
-library(mlbench)
+#library(caret)
+#library(mlbench)
 ```
 
 
@@ -77,6 +77,16 @@ Folloing is an example:
  `pred()`, and `coef()` function will present residuals, best fitted values, and coefficients of the linear model respectively. Each function will print a vector of the corresponding numeric values. These functions, as well, requires to specify the name of the data set, that is stored in the same class as the function is, as `datasetname$functionname()` because they are also the methods defined in the reference class.
  
  Followings are examples:
+ 
+### pred()
+
+```{r echo=TRUE, fig.show='hold'}
+newdata <- iris[35:40,1:4]
+ridgereg_obj$predict(newdata=newdata)
+
+```
+ 
+ 
 ### coef() 
 
 To calculate the coefficients as a named vector.
