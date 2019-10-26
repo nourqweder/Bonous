@@ -13,15 +13,17 @@ Maintainer: Who to complain to <nouqw898@student.liu.se>
 Description: in this R lab we are trying to implement A linear regression as a package.
 License: GPL-3
 RoxygenNote: 6.1.99.9000
+Depends: R (>= 3.3.0)
+LazyData: true
 Encoding: UTF-8
-Suggests: 
+Suggests: testthat,
     knitr,
-    MASS,
+    rmarkdown,
     testthat,
-    ggplot2,
+    covr
+Imports: ggplot2,methods,
     dplyr,
-    nycflights13
-Imports: methods, stats
+    nycflights13,maps
 VignetteBuilder: knitr
 
 
