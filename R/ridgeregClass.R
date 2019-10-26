@@ -116,6 +116,7 @@ ridgereg <- setRefClass("ridgereg",
 #class(formula)
 #ridgeregObj <- ridgereg$new(formula, data,lambda)
 #ridgeregObj$print()
+#ridgeregObj$coef()
 #head(ridgeregObj$calculateValues()[[2]])
 #ridgeregObj$predict()
 #newdata <- iris[35:40,1:4]
