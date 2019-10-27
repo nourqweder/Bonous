@@ -99,9 +99,7 @@ $$\hat{\beta} = (X^TX + lambda )^{-1}X^Ty$$
 
 ## Visualization Airports Time Delay
 
-```{r echo=TRUE, fig.show='hold'}
-visualization_airports_delay()
-```
+
 
 
 
