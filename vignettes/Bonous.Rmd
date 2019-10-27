@@ -96,6 +96,15 @@ $$\hat{\beta} = (X^TX + lambda )^{-1}X^Ty$$
   ridgereg_obj$coef()
 ```
 
+
+## Visualization Airports Time Delay
+
+```{r echo=TRUE, fig.show='hold'}
+visualization_airports_delay()
+```
+
+
+
 ## References 
 [Advanced R](http://adv-r.had.co.nz/R5.html)
 
