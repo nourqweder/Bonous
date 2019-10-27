@@ -8,6 +8,11 @@
 ```{r installation, eval = FALSE}
 devtools::install_github("nourqweder/Bonous", build_vignettes = TRUE)
 ```
+OR
+
+```{r installation, eval = FALSE}
+devtools::install_github("nourqweder/Bonous", build_vignettes = TRUE, force = TRUE)
+```
 
 
 ## Usage Methods
